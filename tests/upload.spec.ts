@@ -8,22 +8,26 @@ const __dirname = path.dirname(__filename);
 
 test.describe("Upload File", () => {
   let cartPage: CartPage;
-  test("should upload a test file", async ({ page }) => {
-    cartPage = new CartPage(page);
+  const fileName = ["logotitle.png, dummy.pdf"];
 
-    // Open url
-    await cartPage.navigate();
+  for (const name of fileName) {
+    test(`should upload a ${name} file`, async ({ page }) => {
+      cartPage = new CartPage(page);
 
-    // provice test file path
-    const filePath = path.join(__dirname, "../data/dummy.pdf");
+      // Open url
+      await cartPage.navigate();
 
-    // upload test file
-    await cartPage.uploadComponent().uploadFile(filePath);
+      // provice test file path
+      const filePath = path.join(__dirname, `../data/${name}`);
 
-    // assertion
-    await expect(cartPage.uploadComponent().successTxt).toContainText(
-      "uploaded successfully",
-      { timeout: 10000 }
-    );
-  });
+      // upload test file
+      await cartPage.uploadComponent().uploadFile(filePath);
+
+      // assertion
+      await expect(cartPage.uploadComponent().successTxt).toContainText(
+        "uploaded successfully",
+        { timeout: 10000 }
+      );
+    });
+  }
 });
