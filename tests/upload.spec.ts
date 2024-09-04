@@ -1,7 +1,10 @@
 import { test, expect } from "@playwright/test";
 import CartPage from "../pages/cart.page";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const path = require("path");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 test.describe("Upload File", () => {
   let cartPage: CartPage;
