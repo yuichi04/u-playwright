@@ -3,6 +3,7 @@ import ContactPage from "../pages/contact.page";
 
 test.describe("Contact", () => {
   let contactPage: ContactPage;
+
   test("Fill contact form and verify success message", async ({ page }) => {
     contactPage = new ContactPage(page);
 
